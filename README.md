@@ -137,6 +137,38 @@ Edit the default values in `app.py` in the `compose()` method to change the pre-
 
 MIT License - feel free to use and modify as needed.
 
+## 📦 Distribution (Homebrew)
+
+To distribute this app via Homebrew:
+
+1. **Build the Release Artifact**:
+   Run the build script to generate the standalone binary and `tar.gz` archive:
+   ```bash
+   ./homebrew/build_release.sh
+   ```
+   This will output a `sha256` hash.
+
+2. **Create a Release**:
+   - Host the generated `.tar.gz` file (e.g., on GitHub Releases).
+   - Copy the URL of the uploaded asset.
+
+3. **Update Formula**:
+   - Edit `homebrew/Formula/clean-up-clawd.rb`.
+   - Update `url` with your asset URL.
+   - Update `sha256` with the hash from step 1.
+
+4. **Publish**:
+   - Create a new repository named `homebrew-tap`.
+   - Add the modified `clean-up-clawd.rb` to a `Formula` directory in that repo.
+   - Push the changes.
+
+5. **Install**:
+   Users can then install it via:
+   ```bash
+   brew tap sahil/tap-name # Replace with your tap name
+   brew install clean-up-clawd
+   ```
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit issues or pull requests.

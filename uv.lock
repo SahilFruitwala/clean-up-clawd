@@ -12,7 +12,7 @@ wheels = [
 ]
 
 [[package]]
-name = "dir-cleaner"
+name = "clean-up-clawd"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [

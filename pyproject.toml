@@ -1,5 +1,5 @@
 [project]
-name = "dir-cleaner"
+name = "clean-up-clawd"
 version = "1.0.0"
 description = "A beautiful TUI app to clean up directories by removing junk folders (node_modules, __pycache__) and files"
 readme = "README.md"
@@ -27,11 +27,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sahil/dir-cleaner"
-Repository = "https://github.com/sahil/dir-cleaner"
+Homepage = "https://github.com/sahil/clean-up-clawd"
+Repository = "https://github.com/sahil/clean-up-clawd"
 
 [project.scripts]
-dir-cleaner = "app:main"
+clean-up-clawd = "app:main"
 
 [build-system]
 requires = ["hatchling"]
