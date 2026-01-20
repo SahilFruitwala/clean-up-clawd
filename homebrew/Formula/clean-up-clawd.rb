@@ -5,15 +5,19 @@ class CleanUpClawd < Formula
   
   # TODO: Replace with the actual URL to your release file
   # Example: https://github.com/sahil/clean-up-clawd/releases/download/v1.0.0/clean-up-clawd-v1.0.0-macos.tar.gz
-  url "https://github.com/SahilFruitwala/clean-up-clawd/releases/download/v1.0.0/clean-up-clawd-v1.0.0-macos.tar.gz"
+  url "https://github.com/SahilFruitwala/clean-up-clawd/releases/download/v1.0.1/clean-up-clawd-v1.0.1-macos.tar.gz"
   
   # TODO: Replace with the SHA256 output from homebrew/build_release.sh
-  sha256 "b9f74b9afea9f7c97098c0975ddcbad1179e39f7710fb12b19cefbfce2771e83"
+  sha256 "bb9b6db2f072b934f46568195e7d59a42fe0ac6dc458acfe520066c63a39dfdb"
   
-  version "1.0.0"
+  version "1.0.1"
 
   def install
-    bin.install "clean-up-clawd"
+    # Install the entire directory to libexec
+    libexec.install Dir["*"]
+    
+    # Symlink the binary to bin
+    bin.install_symlink libexec/"clean-up-clawd"
   end
 
   test do

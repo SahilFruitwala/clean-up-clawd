@@ -3,7 +3,7 @@ set -e
 
 # Configuration
 APP_NAME="clean-up-clawd"
-VERSION="1.0.0"
+VERSION="1.0.1"
 DIST_DIR="dist"
 RELEASE_DIR="release"
 TAR_NAME="${APP_NAME}-v${VERSION}-macos.tar.gz"

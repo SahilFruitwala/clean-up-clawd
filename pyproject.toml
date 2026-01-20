@@ -1,6 +1,6 @@
 [project]
 name = "clean-up-clawd"
-version = "1.0.0"
+version = "1.0.1"
 description = "A beautiful TUI app to clean up directories by removing junk folders (node_modules, __pycache__) and files"
 readme = "README.md"
 license = {text = "MIT"}
