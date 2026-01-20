@@ -1,0 +1,245 @@
+/* 
+ * Directory Cleaner TUI - Clean Modern Style
+ */
+
+Screen {
+    background: $surface;
+}
+
+Header {
+    dock: top;
+    background: $primary;
+    height: 3;
+}
+
+Footer {
+    dock: bottom;
+    background: $primary-darken-2;
+}
+
+/* Main Layout */
+#main-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Top Bar */
+#top-bar {
+    height: 3;
+    background: $surface-darken-1;
+    padding: 0 1;
+    align: left middle;
+}
+
+#folder-label {
+    width: 10;
+    padding: 0 1;
+}
+
+#top-bar Input {
+    width: 1fr;
+    margin: 0 1;
+}
+
+#top-bar Button {
+    margin: 0 0 0 1;
+}
+
+/* Content Area */
+#content-area {
+    height: 1fr;
+}
+
+/* Left Panel */
+#left-panel {
+    width: 45;
+    background: $surface-darken-1;
+    border-right: solid $primary;
+    padding: 1;
+}
+
+.section-title {
+    color: $secondary;
+    text-style: bold;
+    margin-top: 1;
+}
+
+#dir-list {
+    height: 8;
+    background: $surface-darken-2;
+    border: round $primary;
+    margin: 1 0;
+}
+
+#dir-buttons {
+    height: auto;
+}
+
+#dir-buttons Button {
+    margin-right: 1;
+    min-width: 8;
+}
+
+#left-panel Input {
+    margin: 0 0 1 0;
+}
+
+.spacer {
+    height: 1;
+}
+
+.spacer-h {
+    width: 1fr;
+}
+
+#tree-container {
+    height: 1fr;
+    background: $surface-darken-2;
+    border: round $primary;
+}
+
+DirectoryTree {
+    background: $surface-darken-2;
+}
+
+DirectoryTree > .directory-tree--folder {
+    color: $warning;
+}
+
+/* Right Panel - Results */
+#right-panel {
+    width: 1fr;
+    padding: 1;
+    background: $surface;
+}
+
+#scan-bar {
+    height: 3;
+    align: left middle;
+    margin-bottom: 1;
+}
+
+#scan-button {
+    min-width: 15;
+    background: $success;
+}
+
+#scan-button:hover {
+    background: $success-lighten-1;
+}
+
+#cancel-button {
+    margin: 0 1;
+}
+
+#status-text {
+    color: $text;
+    padding: 0 1;
+    width: 1fr;
+}
+
+#progress-bar {
+    height: 1;
+    margin: 0 0 1 0;
+}
+
+ProgressBar > .bar--bar {
+    color: $success;
+}
+
+#results-label {
+    color: $warning;
+    text-style: bold;
+    padding: 1 0;
+}
+
+/* Results Table - Make it BIG */
+#results-table {
+    height: 1fr;
+    background: $surface-darken-1;
+    border: solid $accent;
+}
+
+DataTable > .datatable--header {
+    background: $primary;
+    text-style: bold;
+}
+
+DataTable > .datatable--cursor {
+    background: $accent;
+}
+
+DataTable > .datatable--even-row {
+    background: $surface-darken-1;
+}
+
+DataTable > .datatable--odd-row {
+    background: $surface-darken-2;
+}
+
+#results-bar {
+    height: 3;
+    margin-top: 1;
+    align: left middle;
+}
+
+#results-bar Button {
+    margin-right: 1;
+}
+
+#delete-button {
+    background: $error;
+    min-width: 20;
+}
+
+#delete-button:hover {
+    background: $error-lighten-1;
+}
+
+/* Modals */
+HelpModal, ConfirmModal {
+    align: center middle;
+}
+
+#help-dialog, #confirm-dialog {
+    width: 60;
+    height: auto;
+    background: $surface;
+    border: thick $primary;
+    padding: 2;
+}
+
+#confirm-dialog {
+    border: thick $error;
+}
+
+#help-title, #confirm-title {
+    text-style: bold;
+    text-align: center;
+    padding-bottom: 1;
+}
+
+#confirm-title {
+    color: $error;
+}
+
+#help-content, #confirm-message {
+    padding: 1;
+    background: $surface-darken-1;
+    border: round $primary;
+}
+
+#help-close {
+    margin-top: 1;
+    width: 100%;
+}
+
+#confirm-buttons {
+    margin-top: 1;
+    align: center middle;
+}
+
+#confirm-buttons Button {
+    margin: 0 1;
+    min-width: 15;
+}
