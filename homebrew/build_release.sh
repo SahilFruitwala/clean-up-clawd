@@ -3,7 +3,7 @@ set -e
 
 # Configuration
 APP_NAME="clean-up-clawd"
-VERSION="1.0.1"
+VERSION="1.0.2"
 DIST_DIR="dist"
 RELEASE_DIR="release"
 TAR_NAME="${APP_NAME}-v${VERSION}-macos.tar.gz"
@@ -20,6 +20,10 @@ rm -rf build dist
 
 # Build with PyInstaller
 uv run pyinstaller clean-up-clawd.spec --noconfirm
+
+# Codesign (Ad-hoc) to help with Gatekeeper performance
+echo -e "${BLUE}Codesigning...${NC}"
+codesign --force --deep --sign - "dist/$APP_NAME/$APP_NAME"
 
 # Create release directory
 mkdir -p "$RELEASE_DIR"

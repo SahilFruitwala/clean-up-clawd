@@ -458,7 +458,13 @@ class DirectoryCleanerApp(App):
                     self.notify("No items found matching your patterns")
 
     def action_cancel_scan(self) -> None:
-        """Cancel the current scan."""
+        """Cancel the current scan or blur input."""
+        # 1. If an input is focused, blur it (escape edit mode)
+        if isinstance(self.focused, Input):
+            self.set_focus(None)
+            return
+
+        # 2. Otherwise, if scanning, cancel the scan
         if self._scan_worker and self._scan_worker.is_running:
             self._scan_worker.cancel()
             self.scanner.cancel()
