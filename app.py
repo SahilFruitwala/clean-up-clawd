@@ -22,7 +22,9 @@ from textual.widgets import (
     Label,
     Static,
     ProgressBar,
+    Markdown,
 )
+from textual.containers import Grid
 from textual.worker import Worker, get_current_worker
 
 from scanner import Scanner, ScanResult, format_size
@@ -36,19 +38,31 @@ class HelpModal(ModalScreen[None]):
         Binding("enter", "close", "Close"),
     ]
 
+    HELP_TEXT = """
+# 📖 user Guide
+
+## 1. Add Folders
+Type a path in the top input and press **Enter**, or browse and click folders in the tree view on the left.
+
+## 2. Configure Patterns
+Edit the **Folder Patterns** and **File Patterns** inputs to specify what you want to clean.  
+*Defaults include `node_modules`, `__pycache__`, etc.*
+
+## 3. Scan
+Click the **SCAN** button (or press `s`). The app will search the added folders for matches.
+
+## 4. Review & Delete
+Review the results. Uncheck items you want to keep.  
+Click **DELETE SELECTED** (or press `d`) to remove them.
+
+---
+**Shortcuts:** `s` Scan | `d` Delete | `a` Select All | `n` Deselect All | `q` Quit
+"""
+
     def compose(self) -> ComposeResult:
         with Container(id="help-dialog"):
-            yield Label("📖 How to Use", id="help-title")
-            yield Label(
-                "1. ADD FOLDERS: Type path + Enter, or click in tree\n"
-                "2. SCAN: Click the green SCAN button\n"
-                "3. REVIEW: All items are selected by default\n"
-                "4. UNSELECT: Click rows you want to KEEP\n"
-                "5. DELETE: Click DELETE to remove selected items\n\n"
-                "KEYS: s=Scan  d=Delete  a=SelectAll  n=Deselect  q=Quit",
-                id="help-content",
-            )
-            yield Button("OK", variant="primary", id="help-close")
+            yield Markdown(self.HELP_TEXT)
+            yield Button("Got it!", variant="primary", id="help-close")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.dismiss(None)
@@ -69,22 +83,24 @@ class ConfirmModal(ModalScreen[bool]):
         super().__init__()
         self.items = items
         self.total_size = sum(item.size for item in items)
+        self.folder_count = sum(1 for item in items if item.item_type == "folder")
+        self.file_count = sum(1 for item in items if item.item_type == "file")
 
     def compose(self) -> ComposeResult:
-        folder_count = sum(1 for item in self.items if item.item_type == "folder")
-        file_count = sum(1 for item in self.items if item.item_type == "file")
-
         with Container(id="confirm-dialog"):
-            yield Label("⚠️ CONFIRM DELETE", id="confirm-title")
-            yield Label(
-                f"Delete {folder_count} folders and {file_count} files?\n\n"
-                f"Total size: {format_size(self.total_size)}\n\n"
-                f"This cannot be undone!",
-                id="confirm-message",
-            )
+            yield Label("⚠️ PERMANENTLY DELETE?", id="confirm-title")
+            
+            with Container(id="confirm-stats"):
+                with Horizontal(classes="stat-row"):
+                    yield Label(f"Folders: {self.folder_count}", classes="stat-item")
+                    yield Label(f"Files: {self.file_count}", classes="stat-item")
+                yield Label(f"Total Size: {format_size(self.total_size)}", id="stat-total")
+
+            yield Label("These actions cannot be undone.", id="confirm-warning")
+            
             with Horizontal(id="confirm-buttons"):
-                yield Button("No, Cancel", variant="default", id="confirm-cancel")
-                yield Button("Yes, Delete", variant="error", id="confirm-delete")
+                yield Button("Cancel", variant="default", id="confirm-cancel")
+                yield Button("DELETE EVERYTHING", variant="error", id="confirm-delete")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.dismiss(event.button.id == "confirm-delete")

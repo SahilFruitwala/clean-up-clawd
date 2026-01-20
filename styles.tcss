@@ -1,5 +1,5 @@
 /* 
- * Directory Cleaner TUI - Clean Modern Style
+ * Directory Cleaner TUI - Polished Style
  */
 
 Screen {
@@ -199,47 +199,112 @@ DataTable > .datatable--odd-row {
 /* Modals */
 HelpModal, ConfirmModal {
     align: center middle;
+    background: 50% $surface-darken-1;
 }
 
-#help-dialog, #confirm-dialog {
-    width: 60;
-    height: auto;
+#help-dialog {
+    width: 70;
+    height: 35;
     background: $surface;
     border: thick $primary;
-    padding: 2;
-}
-
-#confirm-dialog {
-    border: thick $error;
-}
-
-#help-title, #confirm-title {
-    text-style: bold;
-    text-align: center;
-    padding-bottom: 1;
-}
-
-#confirm-title {
-    color: $error;
-}
-
-#help-content, #confirm-message {
-    padding: 1;
-    background: $surface-darken-1;
-    border: round $primary;
+    padding: 1 2;
 }
 
 #help-close {
+    width: 100%;
     margin-top: 1;
+}
+
+/* Markdown Styling in Help */
+Markdown {
+    background: $surface;
+    padding: 0 1;
+    height: 1fr;
+    border: solid $secondary;
+}
+
+MarkdownH1 {
+    color: $secondary;
+    text-style: bold;
+    background: $surface-darken-1;
+    border-bottom: solid $secondary;
+    padding: 1;
+    text-align: center;
+}
+
+MarkdownH2 {
+    color: $primary-lighten-1;
+    text-style: bold;
+    margin-top: 1;
+    border-bottom: solid $primary;
+}
+
+MarkdownCodeBlock {
+    background: $surface-darken-1;
+    border: solid $primary;
+    padding: 1;
+}
+
+/* Confirm Dialog Styling */
+#confirm-dialog {
+    width: 50;
+    height: auto;
+    background: $surface;
+    border: thick $error;
+    padding: 2;
+}
+
+#confirm-title {
+    text-style: bold;
+    text-align: center;
+    color: $error;
+    /* text-transform: uppercase; removed - not supported */
+    padding-bottom: 1;
+    border-bottom: solid $error;
     width: 100%;
 }
 
-#confirm-buttons {
-    margin-top: 1;
+#confirm-stats {
+    background: $surface-darken-1;
+    border: round $primary;
+    padding: 1;
+    margin: 1 0;
+    height: auto;
+}
+
+.stat-row {
+    height: 1;
     align: center middle;
+    width: 100%;
+}
+
+.stat-item {
+    width: 1fr;
+    text-align: center;
+    color: $text;
+}
+
+#stat-total {
+    text-align: center;
+    width: 100%;
+    color: $warning;
+    text-style: bold;
+    margin-top: 1;
+}
+
+#confirm-warning {
+    text-align: center;
+    color: $error;
+    width: 100%;
+    padding: 1 0;
+}
+
+#confirm-buttons {
+    align: center middle;
+    margin-top: 1;
 }
 
 #confirm-buttons Button {
     margin: 0 1;
-    min-width: 15;
+    min-width: 16;
 }
