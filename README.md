@@ -1,174 +1,139 @@
-# 🗑️ Directory Cleaner TUI
+<div align="center">
 
-A beautiful terminal-based application for cleaning up your filesystem by removing specific folders (like `node_modules`, `__pycache__`) and files with specific extensions (like `.pyc`, `.DS_Store`).
+# 🦞 Clean Up Clawd
 
-Built with [Textual](https://textual.textualize.io/) for a modern, responsive TUI experience.
+### The Elegant Directory Cleaner for your Terminal
 
-## ✨ Features
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Textual](https://img.shields.io/badge/Built%20With-Textual-green?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)
 
-- **🌲 Directory Browser**: Navigate your filesystem with an interactive tree view
-- **🔍 Pattern Matching**: Scan for folders by name and files by extension
-- **📊 Results Table**: View all matches with size information
-- **☑️ Selective Deletion**: Choose exactly what to delete
-- **🔒 Safe Deletion**: Confirmation modal before any destructive action
-- **⌨️ Keyboard Shortcuts**: Fast navigation without leaving the keyboard
-- **🎨 Modern UI**: Dark theme with beautiful styling
+<p align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm90Zm91bmQ/giphy.gif" alt="Clean Up Clawd Demo" width="600" />
+  <br>
+  <em>Navigate, Scan, and Sweep away the clutter with a modern TUI.</em>
+</p>
+
+</div>
+
+---
+
+## ✨ Overview
+
+**Clean Up Clawd** is a powerful, terminal-based utility designed to reclaim disk space with style. Built on the [Textual](https://textual.textualize.io/) framework, it provides a beautiful, interactive interface to identify and remove development clutter like `node_modules`, `__pycache__`, and temporary files.
+
+Say goodbye to manual cleanup scripts and hello to a visual, safe, and efficient cleaning experience.
+
+## 🚀 Features
+
+- **🌲 Interactive Navigation**: Browse your filesystem with a responsive tree view.
+- **🔍 Smart Scanning**: Instantly find specific folder names (e.g., `node_modules`) or file extensions (e.g., `.DS_Store`).
+- **🛡️ Safety First**: 
+  - **Explicit Selection**: Nothing is deleted until you select it.
+  - **Confirmation Dialog**: Detailed breakdown of files, folders, and size before deletion.
+  - **Non-Recursive**: Prevents double-counting by stopping at the first match.
+- **⌨️ Keyboard Centric**: Full keyboard support for power users (`s` to scan, `d` to delete).
+- **🎨 Modern UI**: polished dark mode with clear visual feedback.
+
+---
 
 ## 📦 Installation
 
-### Prerequisites
+### 🍺 via Homebrew (Recommended for macOS)
 
-- Python 3.10 or higher
-- [uv](https://github.com/astral-sh/uv) package manager
-
-### Quick Start
+The easiest way to install and keep updated.
 
 ```bash
-# Clone or navigate to the project directory
+brew tap SahilFruitwala/tap
+brew install clean-up-clawd
+```
+
+### 🐍 via UV / Pip
+
+If you prefer installing as a Python tool:
+
+```bash
+# Using uv (Recommended)
+uv tool install clean-up-clawd
+
+# Or clone and run
+git clone https://github.com/SahilFruitwala/clean-up-clawd.git
+cd clean-up-clawd
+uv run python app.py
+```
+
+---
+
+## 🎮 How to Use
+
+1.  **Launch**: Run `clean-up-clawd` in your terminal.
+2.  **Add Folders**: 
+    - Type a path in the top bar and hit `Enter`.
+    - Or navigate the tree on the left and click a folder.
+3.  **Configure Patterns**:
+    - **Folders**: Files like `node_modules`, `dist`, `.venv`.
+    - **Files**: Extensions like `.pyc`, `.log`, `.DS_Store`.
+4.  **Scan**: Press `s` or click the **SCAN** button.
+5.  **Review**:
+    - The table shows all matches.
+    - Click rows to **unselect** items you want to keep.
+6.  **Clean**:
+    - Press `d` to trigger the deletion.
+    - Confirm the details in the popup modal.
+    - Done! 🧹
+
+### Keyboard Shortcuts
+
+| Key | Action |
+| :---: | :--- |
+| `s` | **S**can directories |
+| `d` | **D**elete selected |
+| `a` | Select **A**ll |
+| `n` | Select **N**one |
+| `q` | **Q**uit |
+| `?` | Show **Help** |
+
+---
+
+## 🛠️ Configuration
+
+### Default Targets
+
+By default, the app looks for:
+*   **Folders**: `node_modules`, `__pycache__`, `.venv`, `dist`, `build`, `.next`, `target`, `.git`
+*   **Files**: `.pyc`, `.pyo`, `.DS_Store`, `.log`, `.tmp`, `.swp`
+
+You can change these freely in the UI before every scan.
+
+---
+
+## 🏗️ Development
+
+Want to contribute? Run the app locally:
+
+```bash
+# Clone the repo
+git clone https://github.com/SahilFruitwala/clean-up-clawd.git
 cd clean-up-clawd
 
 # Install dependencies and run
 uv run python app.py
 ```
 
-### Development Setup
+### Building for Release
+
+To create a standalone macOS executable:
 
 ```bash
-# Initialize the project (if not already done)
-uv init
-
-# Add dependencies
-uv add textual
-
-# Run the application
-uv run python app.py
+./homebrew/build_release.sh
 ```
 
-## 🚀 Usage
+---
 
-### Launching the App
+## 📄 License
 
-```bash
-uv run python app.py
-```
+This project is licensed under the [MIT License](LICENSE).
 
-### Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `s` | Scan the selected directory |
-| `d` | Delete selected items |
-| `a` | Select all items |
-| `n` | Deselect all items |
-| `r` | Refresh directory tree |
-| `q` | Quit the application |
-| `?` | Show help |
-
-### Workflow
-
-1. **Navigate**: Use the directory tree on the left to select a directory to scan
-2. **Configure**: Enter folder patterns and/or file extensions to match
-3. **Scan**: Press `s` or click "Scan Directory" to find matching items
-4. **Review**: Browse the results table showing all matched items with sizes
-5. **Select**: Click rows or use "Select All" to choose items for deletion
-6. **Delete**: Press `d` or click "Delete Selected" - confirm in the modal
-
-## 📁 Common Patterns
-
-### Folder Patterns
-
-| Pattern | Description |
-|---------|-------------|
-| `node_modules` | Node.js dependencies |
-| `__pycache__` | Python bytecode cache |
-| `.git` | Git repository data |
-| `.venv`, `venv` | Python virtual environments |
-| `dist`, `build` | Build output directories |
-| `.next` | Next.js build cache |
-| `target` | Rust/Java build output |
-| `.cache` | Various cache directories |
-
-### File Extensions
-
-| Pattern | Description |
-|---------|-------------|
-| `.pyc`, `.pyo` | Python compiled files |
-| `.DS_Store` | macOS folder metadata |
-| `.log` | Log files |
-| `.tmp`, `.temp` | Temporary files |
-| `.bak` | Backup files |
-| `.swp` | Vim swap files |
-
-## ⚠️ Safety Features
-
-- **Confirmation Required**: A modal dialog shows exactly what will be deleted before any action
-- **Size Display**: See the total size of items to be deleted
-- **Non-recursive for Matched Folders**: Once a folder matches, its contents are not scanned (prevents duplicate counting)
-- **Error Handling**: Failed deletions are reported without stopping the process
-
-## 🛠️ Project Structure
-
-```
-clean-up-clawd/
-├── app.py          # Main Textual application
-├── scanner.py      # Directory scanning and pattern matching
-├── styles.tcss     # Textual CSS styles
-├── pyproject.toml  # Project configuration
-├── README.md       # This file
-└── .venv/          # Virtual environment (created by uv)
-```
-
-## 🎨 Customization
-
-### Themes
-
-The application uses Textual's built-in theming system. You can modify `styles.tcss` to customize:
-
-- Colors and backgrounds
-- Layout and spacing
-- Component styles
-- Animations
-
-### Default Patterns
-
-Edit the default values in `app.py` in the `compose()` method to change the pre-filled patterns.
-
-## 📝 License
-
-MIT License - feel free to use and modify as needed.
-
-## 📦 Distribution (Homebrew)
-
-To distribute this app via Homebrew:
-
-1. **Build the Release Artifact**:
-   Run the build script to generate the standalone binary and `tar.gz` archive:
-   ```bash
-   ./homebrew/build_release.sh
-   ```
-   This will output a `sha256` hash.
-
-2. **Create a Release**:
-   - Host the generated `.tar.gz` file (e.g., on GitHub Releases).
-   - Copy the URL of the uploaded asset.
-
-3. **Update Formula**:
-   - Edit `homebrew/Formula/clean-up-clawd.rb`.
-   - Update `url` with your asset URL.
-   - Update `sha256` with the hash from step 1.
-
-4. **Publish**:
-   - Create a new repository named `homebrew-tap`.
-   - Add the modified `clean-up-clawd.rb` to a `Formula` directory in that repo.
-   - Push the changes.
-
-5. **Install**:
-   Users can then install it via:
-   ```bash
-   brew tap sahil/tap-name # Replace with your tap name
-   brew install clean-up-clawd
-   ```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit issues or pull requests.
+<div align="center">
+  <sub>Built with ❤️ by Sahil</sub>
+</div>
